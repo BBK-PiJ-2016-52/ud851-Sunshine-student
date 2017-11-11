@@ -17,10 +17,12 @@ package com.example.android.sunshine;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TODO (1) Create a field to store the weather display TextView
+    // COMPLETED (1) Create a field to store the weather display TextView
+    TextView displayTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
