@@ -20,6 +20,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
@@ -57,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         new FetchWeatherTask().execute(location);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         @Override
@@ -68,16 +70,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             String location = params[0];
-            URL weatherRequestUrl = NetworkUtils.buildUrl(location);
+            URL weatherRequestUrl;
+            weatherRequestUrl = NetworkUtils.buildUrl(location);
 
             try {
                 String jsonWeatherResponse = NetworkUtils
                         .getResponseFromHttpUrl(weatherRequestUrl);
 
-                String[] simpleJsonWeatherData = OpenWeatherJsonUtils
+                return OpenWeatherJsonUtils
                         .getSimpleWeatherStringsFromJson(MainActivity.this, jsonWeatherResponse);
-
-                return simpleJsonWeatherData;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -114,6 +115,14 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-
     // TODO (7) Override onOptionsItemSelected to handle clicks on the refresh button
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int itemThatWasClickedId = item.getItemId();
+        if (itemThatWasClickedId == R.id.action_refresh) {
+            loadWeatherData();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);    }
 }
