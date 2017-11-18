@@ -47,6 +47,7 @@
     <!--COMPLETED (15) Set the default visibility of the ProgressBar to invisible-->
     <ProgressBar
         android:layout_width="42dp"
+        android:id="@+id/progress"
         android:layout_height="42dp"
         android:layout_gravity="center"
         android:visibility="invisible"/>
