@@ -15,6 +15,7 @@
  */
 package com.example.android.sunshine;
 
+import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         mWeatherTextView.setVisibility(View.INVISIBLE);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class FetchWeatherTask extends AsyncTask<String, Void, String[]> {
 
         // COMPLETED(18) Within your AsyncTask, override the method onPreExecute and show the loading indicator
@@ -110,10 +112,8 @@ public class MainActivity extends AppCompatActivity {
                 String jsonWeatherResponse = NetworkUtils
                         .getResponseFromHttpUrl(weatherRequestUrl);
 
-                String[] simpleJsonWeatherData = OpenWeatherJsonUtils
+                return OpenWeatherJsonUtils
                         .getSimpleWeatherStringsFromJson(MainActivity.this, jsonWeatherResponse);
-
-                return simpleJsonWeatherData;
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -124,13 +124,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String[] weatherData) {
             // COMPLETED (19) As soon as the data is finished loading, hide the loading indicator
-            mProgressBar.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
 
             if (weatherData != null) {
                 // COMPLETED (11) If the weather data was not null, make sure the data view is visible
-                if (weatherData != null) {
-                    showWeatherDataView();
-                }
+                showWeatherDataView();
                 /*
                  * Iterate through the array and append the Strings to the TextView. The reason why we add
                  * the "\n\n\n" after the String is to give visual separation between each String in the
