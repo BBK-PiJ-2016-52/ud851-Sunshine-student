@@ -117,7 +117,10 @@ public class MainActivity extends AppCompatActivity {
             // TODO (19) As soon as the data is finished loading, hide the loading indicator
 
             if (weatherData != null) {
-                // TODO (11) If the weather data was not null, make sure the data view is visible
+                // COMPLETED (11) If the weather data was not null, make sure the data view is visible
+                if (weatherData != null) {
+                    showWeatherDataView();
+                }
                 /*
                  * Iterate through the array and append the Strings to the TextView. The reason why we add
                  * the "\n\n\n" after the String is to give visual separation between each String in the
@@ -127,7 +130,10 @@ public class MainActivity extends AppCompatActivity {
                     mWeatherTextView.append((weatherString) + "\n\n\n");
                 }
             }
-            // TODO (10) If the weather data was null, show the error message
+            // COMPLETED (10) If the weather data was null, show the error message
+            if (weatherData == null) {
+                showErrorMessage();
+            }
 
         }
     }
