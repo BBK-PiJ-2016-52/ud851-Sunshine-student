@@ -27,7 +27,8 @@
     <!--Used in overflow menu to refresh weather data-->
     <string name="action_refresh">Refresh</string>
 
-    <!--TODO (1) Add a string resource for your error message-->
+    <!--COMPLETED (1) Add a string resource for your error message-->
+    <string name="action_error_message">Error?!</string>
 
 
     <!-- - - - - - - - - - - - - -->
@@ -129,6 +130,7 @@
     <string name="condition_962">Hurricane</string>
 
     <string name="condition_unknown">Unknown (<xliff:g id="conditionId">%1$d</xliff:g>)</string>
+    <string name="something_bad_happened">Something Bad Happened!!</string>
 
 
     <!-- - - - - - - - - - - -->
